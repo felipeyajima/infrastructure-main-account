@@ -21,3 +21,7 @@ TASK_DEFINITION
     cpu_architecture        = "X86_64"
   }
 }
+
+  depends_on = [
+    aws_iam_role_policy.example
+  ]
