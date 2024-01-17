@@ -7,8 +7,8 @@ resource "aws_ecs_task_definition" "turnon" {
   container_definitions    = <<TASK_DEFINITION
 [
   {
-    "name": "iis",
-    "image": "mcr.microsoft.com/windows/servercore/iis",
+    "name": "turnon",
+    "image": aws_ecr_repository.ecr_registry_turnon.repository_uri,
     "cpu": 1024,
     "memory": 2048,
     "essential": true
@@ -23,5 +23,5 @@ TASK_DEFINITION
 }
 
   depends_on = [
-    aws_iam_role_policy.example
+    aws_ecr_repository.ecr_registry_turnon
   ]
