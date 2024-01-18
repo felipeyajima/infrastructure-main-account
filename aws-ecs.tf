@@ -26,8 +26,6 @@ TASK_DEFINITION
     operating_system_family = "LINUX"
     cpu_architecture        = "X86_64"
   }
-  depends_on = [
-    aws_ecr_repository.ecr_registry_turnon
-  ]
+
 }
 
