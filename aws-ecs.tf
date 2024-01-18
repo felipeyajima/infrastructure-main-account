@@ -1,4 +1,3 @@
-/*
 resource "aws_ecs_task_definition" "turnon" {
   family                   = "turnon"
   requires_compatibilities = ["FARGATE"]
@@ -9,7 +8,7 @@ resource "aws_ecs_task_definition" "turnon" {
 [
   {
     "name": "turnon",
-    "image": aws_ecr_repository.ecr_registry_turnon.repository_uri,
+    "image": "381500507201.dkr.ecr.sa-east-1.amazonaws.com/turnon:latest",
     "cpu": 1024,
     "memory": 2048,
     "essential": true
@@ -27,29 +26,5 @@ TASK_DEFINITION
     operating_system_family = "LINUX"
     cpu_architecture        = "X86_64"
   }
-
 }
-*/
-resource "aws_ecs_task_definition" "test" {
-  family                   = "test"
-  requires_compatibilities = ["FARGATE"]
-  network_mode             = "awsvpc"
-  cpu                      = 1024
-  memory                   = 2048
-  container_definitions    = <<TASK_DEFINITION
-[
-  {
-    "name": "iis",
-    "image": "mcr.microsoft.com/windows/servercore/iis",
-    "cpu": 1024,
-    "memory": 2048,
-    "essential": true
-  }
-]
-TASK_DEFINITION
 
-  runtime_platform {
-    operating_system_family = "WINDOWS_SERVER_2019_CORE"
-    cpu_architecture        = "X86_64"
-  }
-}
