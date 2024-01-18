@@ -4,6 +4,7 @@ resource "aws_ecs_task_definition" "turnon" {
   network_mode             = "awsvpc"
   cpu                      = 1024
   memory                   = 2048
+  task_role_arn            = aws_iam_role.role-ecs-to-services.arn
   container_definitions    = <<TASK_DEFINITION
 [
   {
