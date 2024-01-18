@@ -34,7 +34,7 @@ variable "TF_SECRET_ID" {
 variable "QTD_SERVERS" {
 }
 
-
+/*
 variable "ecr-vars"{
   default = [
         {
@@ -75,4 +75,4 @@ variable "ecr-vars"{
         }
       ]
 }
-
+*/
