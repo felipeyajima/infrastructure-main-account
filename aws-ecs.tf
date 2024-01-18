@@ -1,3 +1,4 @@
+/*
 resource "aws_ecs_task_definition" "turnon" {
   family                   = "turnon"
   requires_compatibilities = ["FARGATE"]
@@ -25,3 +26,4 @@ TASK_DEFINITION
   depends_on = [
     aws_ecr_repository.ecr_registry_turnon
   ]
+*/
