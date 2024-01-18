@@ -4,6 +4,7 @@ resource "aws_ecs_task_definition" "turnon" {
   network_mode             = "awsvpc"
   cpu                      = 1024
   memory                   = 2048
+  execution_role_arn       aws_iam_role.role-ecs-to-s3.arn
   container_definitions    = <<TASK_DEFINITION
 [
   {
