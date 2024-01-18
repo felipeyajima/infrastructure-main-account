@@ -11,7 +11,7 @@ resource "aws_ecs_task_definition" "turnon" {
     "image": "381500507201.dkr.ecr.sa-east-1.amazonaws.com/turnon:latest",
     "cpu": 1024,
     "memory": 2048,
-    "essential": true
+    "essential": true,
     "environmentFiles": [
       {
         "value": "arn:aws:s3:::env-vars-ecs-yajima/ecs.env",
