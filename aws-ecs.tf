@@ -4,7 +4,6 @@ resource "aws_ecs_task_definition" "turnon" {
   network_mode             = "awsvpc"
   cpu                      = 1024
   memory                   = 2048
-  execution_role_arn       aws_iam_role.role-ecs-to-s3.arn
   container_definitions    = <<TASK_DEFINITION
 [
   {
@@ -12,13 +11,13 @@ resource "aws_ecs_task_definition" "turnon" {
     "image": "381500507201.dkr.ecr.sa-east-1.amazonaws.com/turnon:latest",
     "cpu": 1024,
     "memory": 2048,
-    "essential": true,
-    "environmentFiles": [
-      {
-        "value": "arn:aws:s3:::env-vars-ecs-yajima/ecs.env",
-        "type": "s3"
-      }
-    ]
+    "essential": true
+    #"environmentFiles": [
+    #  {
+    #    "value": "arn:aws:s3:::env-vars-ecs-yajima/ecs.env",
+    #    "type": "s3"
+    # }
+    #]
   }
 ]
 TASK_DEFINITION
