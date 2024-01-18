@@ -1,6 +1,6 @@
-resource "aws_iam_role_policy" "policy-access-s3-env-bucket" {
+resource "aws_iam_role_policy" "policy-access-services" {
   name = "policy-access-s3-env-bucket"
-  role = aws_iam_role.role-ecs-to-s3.id
+  role = aws_iam_role.role-ecs-to-services.id
 
   # Terraform's "jsonencode" function converts a
   # Terraform expression result to valid JSON syntax.
@@ -10,7 +10,13 @@ resource "aws_iam_role_policy" "policy-access-s3-env-bucket" {
       {
         Action = [
           "s3:GetObject",
-          "s3:GetBucketLocation"
+          "s3:GetBucketLocation",
+          "ecr:GetAuthorizationToken",
+          "ecr:BatchCheckLayerAvailability",
+          "ecr:GetDownloadUrlForLayer",
+          "ecr:BatchGetImage",
+          "logs:CreateLogStream",
+          "logs:PutLogEvents"
         ]
         Effect   = "Allow"
         Resource = aws_s3_bucket.env-vars-ecs-yajima.arn
@@ -22,7 +28,7 @@ resource "aws_iam_role_policy" "policy-access-s3-env-bucket" {
   ]
 }
 
-resource "aws_iam_role" "role-ecs-to-s3" {
+resource "aws_iam_role" "role-ecs-to-services" {
   name = "role-ecs-to-s3"
 
   assume_role_policy = jsonencode({
