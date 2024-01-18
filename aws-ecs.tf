@@ -11,13 +11,13 @@ resource "aws_ecs_task_definition" "turnon" {
     "image": aws_ecr_repository.ecr_registry_turnon.repository_uri,
     "cpu": 1024,
     "memory": 2048,
-    "essential": true,
-    "environmentFiles": [
-      {
-        "value": "arn:aws:s3:::env-vars-ecs-yajima/ecs.env",
-        "type": "s3"
-      }
-    ]
+    "essential": true
+    #"environmentFiles": [
+    #  {
+    #    "value": "arn:aws:s3:::env-vars-ecs-yajima/ecs.env",
+    #    "type": "s3"
+    #  }
+    #]
   }
 ]
 TASK_DEFINITION
