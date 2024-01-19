@@ -46,6 +46,11 @@ data "aws_ecs_task_execution" "turnon-task" {
     security_groups  = [aws_security_group.allow_internet_turnon.id]
     assign_public_ip = false
   }
+
+  depends_on = [
+    aws_subnet.public_sn,
+    aws_security_group.allow_internet_turnon
+  ]
 }
 
 
