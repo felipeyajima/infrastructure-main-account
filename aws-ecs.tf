@@ -42,7 +42,7 @@ data "aws_ecs_task_execution" "turnon-task" {
   launch_type     = "FARGATE"
 
   network_configuration {
-    subnets          = aws_subnet.public_sn.id
+    subnets          = [aws_subnet.public_sn.id]
     security_groups  = [aws_security_group.allow_internet_turnon.id]
     assign_public_ip = false
   }
