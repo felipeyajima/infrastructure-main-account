@@ -31,3 +31,21 @@ TASK_DEFINITION
 }
 
 
+resource "aws_ecs_cluster" "this" {
+  name = "main-ecs-cluster"
+}
+
+data "aws_ecs_task_execution" "turnon-task" {
+  cluster         = aws_ecs_cluster.this.id
+  task_definition = aws_ecs_task_definition.turnon.arn
+  desired_count   = 1
+  launch_type     = "FARGATE"
+
+  network_configuration {
+    subnets          = aws_subnet.example[*].id
+    security_groups  = [aws_security_group.example.id]
+    assign_public_ip = false
+  }
+}
+
+
