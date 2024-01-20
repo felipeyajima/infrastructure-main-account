@@ -27,35 +27,35 @@ resource "aws_ecs_task_definition" "turnon" {
       },
       {
          "name": "USERNAME",
-         "value": "${var.USERNAME}
+         "value": "${var.USERNAME}"
       },
       {
          "name": "PASSWORD",
-         "value": "${var.PASSWORD}
+         "value": "${var.PASSWORD}"
       },
       {
          "name": "TF_TOKEN",
-         "value": "${var.TF_TOKEN}
+         "value": "${var.TF_TOKEN}"
       },
       {
          "name": "TF_ACCESS_URL",
-         "value": "${var.TF_ACCESS_URL}
+         "value": "${var.TF_ACCESS_URL}"
       },
       {
          "name": "TF_ACCESS_ID",
-         "value": "${var.TF_ACCESS_ID}
+         "value": "${var.TF_ACCESS_ID}"
       },
       {
          "name": "TF_SECRET_URL",
-         "value": "${var.TF_SECRET_URL}
+         "value": "${var.TF_SECRET_URL}"
       },
       {
          "name": "TF_SECRET_ID",
-         "value": "${var.TF_SECRET_ID}
+         "value": "${var.TF_SECRET_ID}"
       },
       {
          "name": "QTD_SERVERS",
-         "value": "${var.QTD_SERVERS}
+         "value": "${var.QTD_SERVERS}"
       }
    ]
   }
