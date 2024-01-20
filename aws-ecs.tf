@@ -14,12 +14,50 @@ resource "aws_ecs_task_definition" "turnon" {
     "cpu": 1024,
     "memory": 2048,
     "essential": true,
-    "environmentFiles": [
+    #"environmentFiles": [
+    #  {
+    #    "value": "arn:aws:s3:::env-vars-ecs-yajima/ecs.env",
+    #    "type": "s3"
+    # }
+    #]
+    "environment": [
       {
-        "value": "arn:aws:s3:::env-vars-ecs-yajima/ecs.env",
-        "type": "s3"
-     }
-    ]
+         "name": "URL_SANDBOX",
+         "value": "${var.URL_SANDBOX}"
+      },
+      {
+         "name": "USERNAME",
+         "value": "${var.USERNAME}
+      },
+      {
+         "name": "PASSWORD",
+         "value": "${var.PASSWORD}
+      },
+      {
+         "name": "TF_TOKEN",
+         "value": "${var.TF_TOKEN}
+      },
+      {
+         "name": "TF_ACCESS_URL",
+         "value": "${var.TF_ACCESS_URL}
+      },
+      {
+         "name": "TF_ACCESS_ID",
+         "value": "${var.TF_ACCESS_ID}
+      },
+      {
+         "name": "TF_SECRET_URL",
+         "value": "${var.TF_SECRET_URL}
+      },
+      {
+         "name": "TF_SECRET_ID",
+         "value": "${var.TF_SECRET_ID}
+      },
+      {
+         "name": "QTD_SERVERS",
+         "value": "${var.QTD_SERVERS}
+      }
+   ]
   }
 ]
 TASK_DEFINITION
