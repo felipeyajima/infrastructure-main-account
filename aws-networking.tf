@@ -21,10 +21,7 @@ resource "aws_internet_gateway" "igwt" {
   }
 }
 
-import {
-  to = aws_route_table_association.assoc
-  id = "subnet-0237860a7d956d3fd/rtb-01434b23e40f7dc53"
-}
+
 
 resource "aws_route_table" "exit_to_igwt" {
   vpc_id = aws_vpc.main.id
@@ -39,7 +36,14 @@ resource "aws_route_table" "exit_to_igwt" {
   }
 }
 
-#resource "aws_route_table_association" "association" {
-#  subnet_id      = aws_subnet.public_sn.id
-#  route_table_id = aws_route_table.exit_to_igwt.id
-#}
+
+
+import {
+  to = aws_route_table_association.association
+  id = "subnet-0237860a7d956d3fd/rtb-01434b23e40f7dc53"
+}
+
+resource "aws_route_table_association" "association" {
+  subnet_id      = aws_subnet.public_sn.id
+  route_table_id = aws_route_table.exit_to_igwt.id
+}
