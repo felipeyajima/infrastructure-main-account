@@ -37,7 +37,7 @@ resource "aws_route_table" "exit_to_igwt" {
 }
 
 
-
+## Importando a associação atual e fazendo a nova associação da nova route rable na subnet acima
 import {
   to = aws_route_table_association.association
   id = "subnet-0237860a7d956d3fd/rtb-01434b23e40f7dc53"
