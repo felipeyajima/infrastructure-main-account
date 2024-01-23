@@ -39,7 +39,7 @@ resource "aws_route_table" "exit_to_igwt" {
   }
 }
 
-resource "aws_route_table_association" "a" {
+resource "aws_route_table_association" "association" {
   subnet_id      = aws_subnet.public_sn.id
   route_table_id = aws_route_table.exit_to_igwt.id
 }
