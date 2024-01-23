@@ -5,13 +5,6 @@ resource "aws_vpc" "main" {
   }
 }
 
-resource "aws_vpc" "dmain" {
-  cidr_block = "192.168.0.1/22"
-  tags = {
-    Name = "dportfolio"
-  }
-}
-
 resource "aws_subnet" "public_sn" {
   vpc_id     = aws_vpc.main.id
   cidr_block = "10.0.1.0/24"
