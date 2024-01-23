@@ -16,7 +16,10 @@ resource "aws_iam_role_policy" "policy-access-services" {
           "ecr:GetDownloadUrlForLayer",
           "ecr:BatchGetImage",
           "logs:CreateLogStream",
-          "logs:PutLogEvents"
+          "logs:PutLogEvents",
+          "ssm:GetParameters",
+          "secretsmanager:GetSecretValue",
+          "kms:Decrypt"
         ]
         Effect   = "Allow"
         Resource = aws_s3_bucket.env-vars-ecs-yajima.arn
