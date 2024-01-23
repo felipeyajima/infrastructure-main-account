@@ -66,7 +66,7 @@ TASK_DEFINITION
 resource "aws_ecs_cluster" "this" {
   name = "main-ecs-cluster"
 }
-/*
+
 data "aws_ecs_task_execution" "turnon-task" {
   cluster         = aws_ecs_cluster.this.id
   task_definition = aws_ecs_task_definition.turnon.arn
@@ -85,7 +85,7 @@ data "aws_ecs_task_execution" "turnon-task" {
   ]
 }
 
-*/
+
 
 
 
