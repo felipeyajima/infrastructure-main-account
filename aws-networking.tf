@@ -5,13 +5,6 @@ resource "aws_vpc" "main" {
   }
 }
 
-resource "aws_vpc" "wmain" {
-  cidr_block = "10.1.0.0/22"
-  tags = {
-    Name = "wportfolio"
-  }
-}
-
 resource "aws_subnet" "public_sn" {
   vpc_id     = aws_vpc.main.id
   cidr_block = "10.0.1.0/24"
@@ -46,7 +39,7 @@ resource "aws_route_table" "exit_to_igwt" {
   }
 }
 
-resource "aws_route_table_association" "association" {
-  subnet_id      = aws_subnet.public_sn.id
-  route_table_id = aws_route_table.exit_to_igwt.id
-}
+#resource "aws_route_table_association" "association" {
+#  subnet_id      = aws_subnet.public_sn.id
+#  route_table_id = aws_route_table.exit_to_igwt.id
+#}
