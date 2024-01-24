@@ -22,7 +22,7 @@ resource "aws_iam_role_policy" "policy-access-services" {
           "kms:Decrypt"
         ]
         Effect   = "Allow"
-        Resource = aws_s3_bucket.env-vars-ecs-yajima.arn
+        Resource = "*"
       },
     ]
   })
