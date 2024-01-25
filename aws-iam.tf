@@ -46,3 +46,47 @@ resource "aws_iam_role" "role-ecs-to-services" {
     ]
   })
 }
+
+
+
+### API Gateway -> Batch e ECS ###
+resource "aws_iam_role_policy" "to-batch-e-ecs" {
+  name = "portfolio-to-batch-e-ecs"
+  role = aws_iam_role.portfolio-role-apigtw-to-services.id
+
+  # Terraform's "jsonencode" function converts a
+  # Terraform expression result to valid JSON syntax.
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = [
+          "ecr:*"
+          "batch:*"
+        ]
+        Effect   = "Allow"
+        Resource = "*"
+      },
+    ]
+  })
+}
+
+resource "aws_iam_role" "portfolio-role-apigtw-to-services" {
+  name = "portfolio-role-apigtw-to-services"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Sid    = ""
+        Principal = {
+          Service = [
+            "apigateway.amazonaws.com"
+          ]
+        }
+      },
+    ]
+  })
+}
