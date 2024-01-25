@@ -9,8 +9,6 @@ resource "aws_iam_role_policy" "policy-access-services" {
     Statement = [
       {
         Action = [
-          "s3:GetObject",
-          "s3:GetBucketLocation",
           "ecr:GetAuthorizationToken",
           "ecr:BatchCheckLayerAvailability",
           "ecr:GetDownloadUrlForLayer",
@@ -26,9 +24,6 @@ resource "aws_iam_role_policy" "policy-access-services" {
       },
     ]
   })
-  #depends_on = [
-  #   aws_s3_bucket.env-vars-ecs-yajima
-  #]
 }
 
 resource "aws_iam_role" "role-ecs-to-services" {
