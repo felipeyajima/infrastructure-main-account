@@ -17,5 +17,4 @@ resource "aws_batch_compute_environment" "turnon" {
 
   service_role = aws_iam_role.role-ecs-to-services.arn
   type         = "MANAGED"
-  #depends_on   = [aws_iam_role_policy_attachment.aws_batch_service_role]
 }
