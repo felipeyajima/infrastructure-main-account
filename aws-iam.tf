@@ -39,7 +39,8 @@ resource "aws_iam_role" "role-ecs-to-services" {
         Principal = {
           Service = [
             "ecs-tasks.amazonaws.com",
-            "ecs.amazonaws.com"
+            "ecs.amazonaws.com",
+            "batch.amazonaws.com"
           ]
         }
       },
