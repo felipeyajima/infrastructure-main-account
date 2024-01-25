@@ -1,3 +1,5 @@
+### Deprecated - Replaced by AWS Batch
+/*
 resource "aws_ecs_task_definition" "turnon" {
   family                   = "turnon"
   requires_compatibilities = ["FARGATE"]
@@ -84,7 +86,7 @@ data "aws_ecs_task_execution" "turnon-task" {
     aws_security_group.allow_internet_turnon
   ]
 }
-
+*/
 
 
 
