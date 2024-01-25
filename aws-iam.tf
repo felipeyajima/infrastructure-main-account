@@ -26,9 +26,9 @@ resource "aws_iam_role_policy" "policy-access-services" {
       },
     ]
   })
-  depends_on = [
-     aws_s3_bucket.env-vars-ecs-yajima
-  ]
+  #depends_on = [
+  #   aws_s3_bucket.env-vars-ecs-yajima
+  #]
 }
 
 resource "aws_iam_role" "role-ecs-to-services" {
