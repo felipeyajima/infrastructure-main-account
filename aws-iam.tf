@@ -61,7 +61,7 @@ resource "aws_iam_role_policy" "to-batch-e-ecs" {
     Statement = [
       {
         Action = [
-          "ecr:*"
+          "ecr:*",
           "batch:*"
         ]
         Effect   = "Allow"
