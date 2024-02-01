@@ -31,3 +31,86 @@ resource "aws_batch_job_queue" "turnon" {
   ]
 }
 
+
+resource "aws_batch_job_definition" "turnon" {
+  name = "turnon"
+  type = "container"
+  
+  container_properties = jsonencode({
+    image   = "381500507201.dkr.ecr.sa-east-1.amazonaws.com/turnon:latest"
+    executionRoleArn = aws_iam_role.role-ecs-to-services.arn
+    resourceRequirements = [
+      {
+        type  = "VCPU"
+        value = "1"
+      },
+      {
+        type  = "MEMORY"
+        value = "2048"
+      }
+    ]
+
+    networkConfiguration = {
+      assignPublicIp = "ENABLED"
+    }
+
+    fargatePlatformConfiguration = {
+      platformVersion = "LATEST"
+    }
+
+    runtimePlatform = {
+      operatingSystemFamily = "LINUX",
+      cpuArchitecture = "X86_64"
+    }
+
+    timeout = {
+      attemptDurationSeconds = 240
+    }
+
+    platformCapabilities = [
+      "FARGATE"
+    ]
+
+    containerOrchestrationType = "ECS"
+
+    "environment": [
+      {
+         "name": "URL_SANDBOX",
+         "value": "${var.URL_SANDBOX}"
+      },
+      {
+         "name": "USERNAME",
+         "value": "${var.USERNAME}"
+      },
+      {
+         "name": "PASSWORD",
+         "value": "${var.PASSWORD}"
+      },
+      {
+         "name": "TF_TOKEN",
+         "value": "${var.TF_TOKEN}"
+      },
+      {
+         "name": "TF_ACCESS_URL",
+         "value": "${var.TF_ACCESS_URL}"
+      },
+      {
+         "name": "TF_ACCESS_ID",
+         "value": "${var.TF_ACCESS_ID}"
+      },
+      {
+         "name": "TF_SECRET_URL",
+         "value": "${var.TF_SECRET_URL}"
+      },
+      {
+         "name": "TF_SECRET_ID",
+         "value": "${var.TF_SECRET_ID}"
+      },
+      {
+         "name": "QTD_SERVERS",
+         "value": "${var.QTD_SERVERS}"
+      }
+   ]
+
+  })
+}
