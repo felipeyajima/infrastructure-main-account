@@ -17,7 +17,14 @@ resource "aws_iam_role_policy" "policy-access-services" {
           "logs:PutLogEvents",
           "ssm:GetParameters",
           "secretsmanager:GetSecretValue",
-          "kms:Decrypt"
+          "kms:Decrypt",
+          "logs:DescribeLogGroups",
+          "iam:GetInstanceProfile",
+          "iam:GetRole",
+          "autoscaling:*",
+          "eks:*",
+          "ecs:*",
+          "ec2:*"
         ]
         Effect   = "Allow"
         Resource = "*"
