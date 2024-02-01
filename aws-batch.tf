@@ -1,4 +1,4 @@
-/*
+
 resource "aws_batch_compute_environment" "turnon" {
   compute_environment_name = "turnon"
 
@@ -19,4 +19,4 @@ resource "aws_batch_compute_environment" "turnon" {
   service_role = aws_iam_role.role-ecs-to-services.arn
   type         = "MANAGED"
 }
-*/
+
