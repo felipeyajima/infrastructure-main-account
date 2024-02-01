@@ -20,3 +20,14 @@ resource "aws_batch_compute_environment" "turnon" {
   type         = "MANAGED"
 }
 
+
+
+resource "aws_batch_job_queue" "turnon" {
+  name     = "turnon"
+  state    = "ENABLED"
+  priority = 1
+  compute_environments = [
+    aws_batch_compute_environment.turnon.arn
+  ]
+}
+
