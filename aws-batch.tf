@@ -38,9 +38,9 @@ resource "aws_batch_job_definition" "turnon" {
   platform_capabilities = [
       "FARGATE"
   ]
-  containerOrchestrationType = "ECS"
+  container_orchestration_type = "ECS"
   timeout = {
-    attemptDurationSeconds = 240
+    attempt_duration_seconds = 240
   }
   container_properties = jsonencode({
     image   = "381500507201.dkr.ecr.sa-east-1.amazonaws.com/turnon:latest"
