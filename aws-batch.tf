@@ -16,10 +16,7 @@ resource "aws_batch_compute_environment" "turnon" {
     type = "FARGATE"
   }
 
-  service_role = [
-    aws_iam_role.role-ecs-to-services.arn,
-    "arn:aws:iam::381500507201:role/aws-service-role/batch.amazonaws.com/AWSServiceRoleForBatch"
-  ]
+  service_role = aws_iam_role.role-ecs-to-services.arn
   type         = "MANAGED"
 }
 
