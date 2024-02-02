@@ -1,5 +1,8 @@
 resource "aws_api_gateway_rest_api" "main" {
   name = "main"
+  endpoint_configuration {
+    types = ["REGIONAL"]
+  }
 }
 
 resource "aws_api_gateway_resource" "turnon" {
