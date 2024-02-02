@@ -35,13 +35,7 @@ resource "aws_batch_job_queue" "turnon" {
 resource "aws_batch_job_definition" "turnon" {
   name = "turnon"
   type = "container"
-  timeout = {
-      attemptDurationSeconds = 240
-  }
-  platformCapabilities = [
-    "FARGATE"
-  ]
-  containerOrchestrationType = "ECS"
+
   container_properties = jsonencode({
     image   = "381500507201.dkr.ecr.sa-east-1.amazonaws.com/turnon:latest"
     executionRoleArn = aws_iam_role.role-ecs-to-services.arn
@@ -69,6 +63,14 @@ resource "aws_batch_job_definition" "turnon" {
       operatingSystemFamily = "LINUX",
       cpuArchitecture = "X86_64"
     }
+
+    timeout = {
+      attemptDurationSeconds = 240
+    }
+    platformCapabilities = [
+      "FARGATE"
+    ]
+    containerOrchestrationType = "ECS"
 
     "environment": [
       {
@@ -108,6 +110,7 @@ resource "aws_batch_job_definition" "turnon" {
          "value": "${var.QTD_SERVERS}"
       }
    ]
+  
 
   })
 }
