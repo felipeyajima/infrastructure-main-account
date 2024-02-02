@@ -50,11 +50,6 @@ resource "aws_batch_job_definition" "turnon" {
       }
     ]
 
-    networkConfiguration = {
-      assignPublicIp = "ENABLED",
-      interfaceConfigurations = []
-    }
-
     fargatePlatformConfiguration = {
       platformVersion = "LATEST"
     }
