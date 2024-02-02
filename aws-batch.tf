@@ -38,8 +38,8 @@ resource "aws_batch_job_definition" "turnon" {
   platform_capabilities = [
       "FARGATE"
   ]
-  container_orchestration_type = "ECS"
-  timeout = {
+  #container_orchestration_type = "ECS"
+  timeout {
     attempt_duration_seconds = 240
   }
   container_properties = jsonencode({
