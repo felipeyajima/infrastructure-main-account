@@ -35,7 +35,7 @@ resource "aws_batch_job_queue" "turnon" {
 resource "aws_batch_job_definition" "turnon" {
   name = "turnon"
   type = "container"
-  platformCapabilities = [
+  platform_capabilities = [
       "FARGATE"
   ]
   container_properties = jsonencode({
