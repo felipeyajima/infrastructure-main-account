@@ -35,10 +35,12 @@ resource "aws_batch_job_queue" "turnon" {
 resource "aws_batch_job_definition" "turnon" {
   name = "turnon"
   type = "container"
-
+  platformCapabilities = [
+      "FARGATE"
+  ]
   container_properties = jsonencode({
     image   = "381500507201.dkr.ecr.sa-east-1.amazonaws.com/turnon:latest"
-    executionRoleArn = aws_iam_role.role-ecs-to-services.arn
+    jobRoleArn = aws_iam_role.role-ecs-to-services.arn
     resourceRequirements = [
       {
         type  = "VCPU"
@@ -62,9 +64,11 @@ resource "aws_batch_job_definition" "turnon" {
     timeout = {
       attemptDurationSeconds = 240
     }
-    platformCapabilities = [
-      "FARGATE"
-    ]
+    
+    networkConfiguration = {
+        assignPublicIp = "ENABLED"
+    }
+    
     containerOrchestrationType = "ECS"
 
     "environment": [
