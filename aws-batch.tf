@@ -48,7 +48,7 @@ resource "aws_batch_job_definition" "turnon" {
     resourceRequirements = [
       {
         type  = "VCPU"
-        value = "1"
+        value = "1.0"
       },
       {
         type  = "MEMORY"
