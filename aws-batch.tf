@@ -38,6 +38,10 @@ resource "aws_batch_job_definition" "turnon" {
   platform_capabilities = [
       "FARGATE"
   ]
+  containerOrchestrationType = "ECS"
+  timeout = {
+    attemptDurationSeconds = 240
+  }
   container_properties = jsonencode({
     image   = "381500507201.dkr.ecr.sa-east-1.amazonaws.com/turnon:latest"
     executionRoleArn = aws_iam_role.role-ecs-to-services.arn
@@ -61,15 +65,9 @@ resource "aws_batch_job_definition" "turnon" {
       cpuArchitecture = "X86_64"
     }
 
-    timeout = {
-      attemptDurationSeconds = 240
-    }
-    
     networkConfiguration = {
         assignPublicIp = "ENABLED"
     }
-    
-    containerOrchestrationType = "ECS"
 
     "environment": [
       {
