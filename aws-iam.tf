@@ -98,3 +98,11 @@ resource "aws_iam_role" "portfolio-role-apigtw-to-services" {
     ]
   })
 }
+
+
+
+############## Permitindo que a role de execução do cluster tenha todas as permissões necessárias para um AWS Batch (AWSBatchServiceRole)
+resource "aws_iam_role_policy_attachment" "copy-awsbatchrole" {
+  role       = aws_iam_role.role-ecs-to-services.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSBatchServiceRole"
+}
