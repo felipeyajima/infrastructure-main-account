@@ -50,4 +50,22 @@ resource "aws_api_gateway_integration_response" "turnon" {
   }
 }
 
+resource "aws_api_gateway_deployment" "turnon-dp" {
+  rest_api_id = aws_api_gateway_rest_apimain.id
+
+  triggers = {
+    redeployment = sha1(jsonencode([
+      aws_api_gateway_resource.turnon.id,
+      aws_api_gateway_method.post-turnon.id,
+      aws_api_gateway_integration.to-batch.id,
+    ]))
+  }
+}
+
+resource "aws_api_gateway_stage" "turnon-st" {
+  deployment_id = aws_api_gateway_deployment.turnon-dp.id
+  rest_api_id   = aws_api_gateway_rest_api.main.id
+  stage_name    = "latest"
+}
+
 
