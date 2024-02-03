@@ -51,7 +51,7 @@ resource "aws_api_gateway_integration_response" "turnon" {
 }
 
 resource "aws_api_gateway_deployment" "turnon-dp" {
-  rest_api_id = aws_api_gateway_rest_apimain.id
+  rest_api_id = aws_api_gateway_rest_api.main.id
 
   triggers = {
     redeployment = sha1(jsonencode([
