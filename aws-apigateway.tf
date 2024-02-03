@@ -16,6 +16,7 @@ resource "aws_api_gateway_method" "post-turnon" {
   http_method   = "POST"
   resource_id   = aws_api_gateway_resource.turnon.id
   rest_api_id   = aws_api_gateway_rest_api.main.id
+  api_key_required = "true"
 }
 
 resource "aws_api_gateway_integration" "to-batch" {
