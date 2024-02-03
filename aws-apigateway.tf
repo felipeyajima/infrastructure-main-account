@@ -46,7 +46,7 @@ resource "aws_api_gateway_integration_response" "turnon" {
 
   # Transforms the backend JSON response to XML
   response_templates = {
-    "application/json"
+    "application/json" = ""
   }
 }
 
