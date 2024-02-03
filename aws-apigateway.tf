@@ -31,4 +31,23 @@ resource "aws_api_gateway_integration" "to-batch" {
   }
 }
 
+resource "aws_api_gateway_method_response" "turnon-response_200" {
+  rest_api_id = aws_api_gateway_rest_api.main.id
+  resource_id = aws_api_gateway_resource.turnon.id
+  http_method = aws_api_gateway_method.post-turnon.http_method
+  status_code = "200"
+}
+
+resource "aws_api_gateway_integration_response" "turnon" {
+  rest_api_id = aws_api_gateway_rest_api.main.id
+  resource_id = aws_api_gateway_resource.turnon.id
+  http_method = aws_api_gateway_method.post-turnon.http_method
+  status_code = aws_api_gateway_method_response.turnon-response_200.status_code
+
+  # Transforms the backend JSON response to XML
+  response_templates = {
+    "application/json"
+  }
+}
+
 
